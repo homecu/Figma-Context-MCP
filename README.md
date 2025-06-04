@@ -54,6 +54,23 @@ This MCP server is specifically designed for use with Cursor. Before responding 
 
 Reducing the amount of context provided to the model helps make the AI more accurate and the responses more relevant.
 
+## ✨ New Features
+
+### 🎯 Visual Analysis Tool
+
+Generate ultra-detailed visual descriptions of Figma mockups automatically:
+
+- **`generate_visual_description`**: Analyzes any Figma frame/component and creates pixel-perfect descriptions
+- **Automated workflow**: No more manual copy/paste to external AI tools
+- **Structured output**: Saves detailed analysis to `.figma/[name]-visual-description.md`
+
+[📖 Learn more about Visual Analysis →](VISUAL_ANALYSIS.md)
+
+### 📁 File Export Tools
+
+- **`get_figma_data_to_file`**: Export Figma data directly to `.figma/` folder (prevents loops)
+- **`list_figma_exports`**: List all exported files and their metadata
+
 ## Getting Started
 
 Many code editors and other AI clients use a configuration file to manage MCP servers.
