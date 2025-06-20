@@ -189,14 +189,15 @@ export function parseFigmaResponse(data: GetFileResponse | GetFileNodesResponse)
 }
 
 // Helper function to find node by ID
-const findNodeById = (id: string, nodes: SimplifiedNode[]): SimplifiedNode | undefined => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _findNodeById = (id: string, nodes: SimplifiedNode[]): SimplifiedNode | undefined => {
   for (const node of nodes) {
     if (node?.id === id) {
       return node;
     }
 
     if (node?.children && node.children.length > 0) {
-      const foundInChildren = findNodeById(id, node.children);
+      const foundInChildren = _findNodeById(id, node.children);
       if (foundInChildren) {
         return foundInChildren;
       }

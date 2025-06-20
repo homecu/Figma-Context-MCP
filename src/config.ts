@@ -94,9 +94,27 @@ export function getServerConfig(isStdioMode: boolean): ServerConfig {
 
   // Validate configuration
   if (!auth.figmaApiKey && !auth.figmaOAuthToken) {
-    console.error(
-      "Either FIGMA_API_KEY or FIGMA_OAUTH_TOKEN is required (via CLI argument or .env file)",
-    );
+    const errorMessage = "Either FIGMA_API_KEY or FIGMA_OAUTH_TOKEN is required (via CLI argument or .env file)";
+    
+    // In Lambda environment, throw error instead of process.exit to allow graceful error handling
+    if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
+      throw new Error(errorMessage);
+    }
+    
+    console.error(errorMessage);
+    process.exit(1);
+  }
+
+  // Check for placeholder values in production
+  if (auth.figmaApiKey === 'placeholder-key-replace-me' || auth.figmaApiKey === 'your-figma-api-key-here') {
+    const errorMessage = "Please replace the placeholder FIGMA_API_KEY with your actual Figma API key";
+    
+    // In Lambda environment, throw error instead of process.exit
+    if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
+      throw new Error(errorMessage);
+    }
+    
+    console.error(errorMessage);
     process.exit(1);
   }
 

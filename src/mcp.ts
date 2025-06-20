@@ -13,7 +13,9 @@ const serverInfo = {
 };
 
 // Function to generate detailed visual description
-function generateDetailedVisualDescription(node: any, file: any): string {
+// Currently unused but kept for future potential use
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function _generateDetailedVisualDescription(node: any, file: any): string {
   const analyzeNode = (currentNode: any, level: number = 0): string => {
     const indent = "  ".repeat(level);
     let description = "";
